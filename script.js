@@ -15,16 +15,16 @@ async function getWeatherByLocation(city) {
 }
 
 function KtoC(K) {
-  return (K - 273.15).toFixed(2);
+  return Math.floor(K - 273.15);
 }
 
 function addWeatherToPage(data) {
   const temp = KtoC(data.main.temp);
   const weather = document.createElement("div");
   weather.classList.add("weather");
-  weather.innerHTML = `<small>There are </small>
-        <h2>${temp}°C</h2>
-        <small>in ${search.value}</small>
+
+  weather.innerHTML = `<h2><img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" /> ${temp}°C <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" /> </h2>
+  <small>${data.weather[0].main}</small>
         `;
 
   main.innerHTML = "";
